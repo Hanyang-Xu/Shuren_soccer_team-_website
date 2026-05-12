@@ -1,67 +1,104 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>书院足球队</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>书院足球队官网</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="#">书院足球队</a>
+
+  <!-- 导航栏 -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">书院足球队</a>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+    <!-- 球员列表 -->
+    <h2 class="mb-4 text-center">球员名单</h2>
+    <div class="row" id="playersList">
+
+      <!-- 球员卡片 -->
+      <div class="col-md-4 mb-4">
+        <div class="card player-card h-100">
+          <div class="card-front">
+            <img src="https://via.placeholder.com/300x200.png?text=球员1" alt="张三">
+            <div class="card-body">
+              <h5 class="card-title">张三</h5>
+              <p class="card-text">前锋</p>
+            </div>
+          </div>
+          <div class="card-back">
+            <div class="card-body">
+              <h5 class="card-title">张三</h5>
+              <p class="card-text">位置：前锋</p>
+              <p class="card-text">球衣号：9</p>
+              <p class="card-text">生日：2003-04-15</p>
+            </div>
+          </div>
         </div>
-    </nav>
+      </div>
 
-    <div class="container my-4">
-        <!-- 球员列表 -->
-        <h2 class="mb-3">球员名单</h2>
-        <div class="row" id="playersList">
-            <!-- 球员卡片示例 -->
-            <div class="col-md-4">
-                <div class="card player-card">
-                    <img src="https://via.placeholder.com/300x200.png?text=球员1" alt="球员1">
-                    <div class="card-body">
-                        <h5 class="card-title">张三</h5>
-                        <p class="card-text">前锋</p>
-                    </div>
-                </div>
+      <div class="col-md-4 mb-4">
+        <div class="card player-card h-100">
+          <div class="card-front">
+            <img src="https://via.placeholder.com/300x200.png?text=球员2" alt="李四">
+            <div class="card-body">
+              <h5 class="card-title">李四</h5>
+              <p class="card-text">中场</p>
             </div>
-            <div class="col-md-4">
-                <div class="card player-card">
-                    <img src="https://via.placeholder.com/300x200.png?text=球员2" alt="球员2">
-                    <div class="card-body">
-                        <h5 class="card-title">李四</h5>
-                        <p class="card-text">中场</p>
-                    </div>
-                </div>
+          </div>
+          <div class="card-back">
+            <div class="card-body">
+              <h5 class="card-title">李四</h5>
+              <p class="card-text">位置：中场</p>
+              <p class="card-text">球衣号：10</p>
+              <p class="card-text">生日：2003-08-20</p>
             </div>
-            <div class="col-md-4">
-                <div class="card player-card">
-                    <img src="https://via.placeholder.com/300x200.png?text=球员3" alt="球员3">
-                    <div class="card-body">
-                        <h5 class="card-title">王五</h5>
-                        <p class="card-text">后卫</p>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
 
-        <hr>
+      <div class="col-md-4 mb-4">
+        <div class="card player-card h-100">
+          <div class="card-front">
+            <img src="https://via.placeholder.com/300x200.png?text=球员3" alt="王五">
+            <div class="card-body">
+              <h5 class="card-title">王五</h5>
+              <p class="card-text">后卫</p>
+            </div>
+          </div>
+          <div class="card-back">
+            <div class="card-body">
+              <h5 class="card-title">王五</h5>
+              <p class="card-text">位置：后卫</p>
+              <p class="card-text">球衣号：5</p>
+              <p class="card-text">生日：2002-12-01</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <!-- 动态公告栏 -->
-        <h2 class="mb-3">动态公告</h2>
-        <ul class="list-group mb-3">
-            <li class="list-group-item">5月15日，球队训练在操场B举行</li>
-            <li class="list-group-item">下周比赛对阵邻校队，地点：体育场</li>
-            <li class="list-group-item">队员张三入选校队名单</li>
-        </ul>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 动态公告栏 -->
+    <h2 class="my-4 text-center">动态公告</h2>
+    <div class="news-container mb-5">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">5月15日，球队训练在操场B举行</li>
+        <li class="list-group-item">下周比赛对阵邻校队，地点：体育场</li>
+        <li class="list-group-item">队员张三入选校队名单</li>
+        <li class="list-group-item">6月1日将举办友谊赛，欢迎观赛</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
