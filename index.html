@@ -286,13 +286,13 @@
       <div class="container hero-inner">
         <div>
           <div class="badge">Southern University of Science and Technology · Since 2016</div>
-          <h1>兄弟同心，<br />目标冠军。</h1>
-          <p>树仁书院足球队（Shuren College Soccer Team）隶属于南方科技大学。自 2016 年成立以来，我们始终是一支重感情、讲团结、有目标的兄弟情球队。每一年，我们都在训练、比赛和磨合中继续进步，向更高水平和冠军目标不断前进。</p>
+          <h1>兄弟同心，<br />荣誉前行。</h1>
+          <p>树仁书院足球队（Shuren College Soccer Team）隶属于南方科技大学。自 2016 年成立以来，我们始终是一支重感情、讲团结、有目标的兄弟情球队。球队目前已取得两个冠军、一个亚军和两个季军；每一年，我们都在训练、比赛和磨合中继续进步，向更高水平不断前进。</p>
           <div class="hero-actions"><a href="#players" class="btn btn-primary">查看球员阵容</a><a href="#join" class="btn btn-outline">欢迎加入我们</a></div>
         </div>
         <div class="hero-card">
           <div class="hero-photo"><div class="hero-photo-note" id="heroPhotoNote">树仁书院足球队合照</div></div>
-          <div class="stats"><div class="stat"><strong id="activeCount">0</strong><span>现役球员</span></div><div class="stat"><strong>2016</strong><span>成立年份</span></div><div class="stat"><strong>🏆</strong><span>目标冠军</span></div></div>
+          <div class="stats"><div class="stat"><strong id="activeCount">0</strong><span>现役球员</span></div><div class="stat"><strong>2016</strong><span>成立年份</span></div><div class="stat"><strong>2冠 1亚 2季</strong><span>球队荣誉</span></div></div>
         </div>
       </div>
     </section>
@@ -300,7 +300,7 @@
     <section id="about"><div class="container">
       <div class="section-head"><div><div class="section-kicker">About Us</div><h2 class="section-title">球队介绍</h2></div><p class="section-desc">我们来自南方科技大学树仁书院，因为足球聚在一起，也因为共同训练、共同比赛、共同承担而成为真正的团队。</p></div>
       <div class="about-grid">
-        <article class="about-card"><h3>我们的球队</h3><p>树仁书院足球队成立于 2016 年，是一支以兄弟情、凝聚力和持续进步为核心的书院球队。我们重视场上的执行力，也珍惜场下的队友情。无论训练还是比赛，球队始终相信：团队的力量，是走向胜利最重要的基础。</p><div class="pill-row"><span class="pill">兄弟情球队</span><span class="pill">团结拼搏</span><span class="pill">每年进步</span><span class="pill">目标冠军</span></div></article>
+        <article class="about-card"><h3>我们的球队</h3><p>树仁书院足球队成立于 2016 年，是一支以兄弟情、凝聚力和持续进步为核心的书院球队。我们重视场上的执行力，也珍惜场下的队友情。无论训练还是比赛，球队始终相信：团队的力量，是走向胜利最重要的基础。</p><div class="pill-row"><span class="pill">兄弟情球队</span><span class="pill">团结拼搏</span><span class="pill">每年进步</span><span class="pill">2冠 1亚 2季</span></div></article>
         <article class="info-card"><h3>训练与活动</h3><p>球队每周三、周六在南方科技大学松禾足球场进行常规训练。训练内容包括基础传接球、分组对抗、体能恢复、战术磨合和比赛备战。我们欢迎热爱足球、愿意融入团队、愿意持续进步的同学加入。</p><div class="pill-row"><span class="pill">每周三训练</span><span class="pill">每周六训练</span><span class="pill">松禾足球场</span></div></article>
       </div>
     </div></section>
@@ -352,11 +352,18 @@
     }
 
     function filteredPlayers() {
-      return players.filter(player => {
-        const status = player.status || "active";
-        const role = player.role || getRoleFromPosition(player.position || "");
-        return (currentStatus === "all" || status === currentStatus) && (currentRole === "all" || role === currentRole);
-      });
+      return players
+        .filter(player => {
+          const status = player.status || "active";
+          const role = player.role || getRoleFromPosition(player.position || "");
+          return (currentStatus === "all" || status === currentStatus) && (currentRole === "all" || role === currentRole);
+        })
+        .sort((a, b) => {
+          const numberA = Number(a.number) || 999;
+          const numberB = Number(b.number) || 999;
+          if (numberA !== numberB) return numberA - numberB;
+          return a.name.localeCompare(b.name, "zh-Hans-CN");
+        });
     }
 
     function renderPlayers() {
