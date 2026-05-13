@@ -208,7 +208,7 @@
       border-radius: 24px;
       background:
         linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.28)),
-        url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1200&q=80") center/cover;
+        var(--hero-image, url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1200&q=80")) center/cover;
       display: flex;
       align-items: end;
       padding: 22px;
@@ -651,8 +651,8 @@
 
         <div class="hero-card">
           <div class="hero-photo">
-            <div class="hero-photo-note">
-              这里可以替换成球队大合照：把图片放入 images 文件夹，然后修改 index.html 中 .hero-photo 的背景图片路径。
+            <div class="hero-photo-note" id="heroPhotoNote">
+              这里可以替换成球队大合照：把图片放入 images 文件夹，然后在 images.js 中修改 hero.image。
             </div>
           </div>
           <div class="stats">
@@ -754,28 +754,7 @@
           </p>
         </div>
 
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1200&q=80" alt="球队训练" />
-            <div class="gallery-caption">球队训练瞬间</div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=900&q=80" alt="比赛现场" />
-            <div class="gallery-caption">比赛现场</div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=900&q=80" alt="足球场" />
-            <div class="gallery-caption">绿茵场</div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80" alt="足球" />
-            <div class="gallery-caption">足球热爱</div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=900&q=80" alt="团队" />
-            <div class="gallery-caption">团队精神</div>
-          </div>
-        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
       </div>
     </section>
 
@@ -819,8 +798,40 @@
     </div>
   </footer>
 
+  <script src="images.js"></script>
   <script src="data.js"></script>
   <script>
+    function applySiteImages() {
+      if (typeof siteImages === "undefined") return;
+
+      const heroPhoto = document.querySelector(".hero-photo");
+      const heroPhotoNote = document.getElementById("heroPhotoNote");
+
+      if (siteImages.hero && siteImages.hero.image) {
+        heroPhoto.style.setProperty("--hero-image", `url("${siteImages.hero.image}")`);
+      }
+
+      if (siteImages.hero && siteImages.hero.caption) {
+        heroPhotoNote.textContent = siteImages.hero.caption;
+      }
+    }
+
+    function renderGallery() {
+      const grid = document.getElementById("galleryGrid");
+
+      if (typeof siteImages === "undefined" || !Array.isArray(siteImages.gallery)) {
+        grid.innerHTML = "";
+        return;
+      }
+
+      grid.innerHTML = siteImages.gallery.map(item => `
+        <div class="gallery-item">
+          <img src="${item.image}" alt="${item.alt || item.caption || '球队图片'}" />
+          <div class="gallery-caption">${item.caption || ''}</div>
+        </div>
+      `).join("");
+    }
+
     function renderPlayers() {
       const grid = document.getElementById("playersGrid");
       const count = document.getElementById("playerCount");
@@ -868,6 +879,8 @@
       `).join("");
     }
 
+    applySiteImages();
+    renderGallery();
     renderPlayers();
     renderNews();
   </script>
