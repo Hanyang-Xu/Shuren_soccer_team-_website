@@ -276,3 +276,58 @@ const news = [
     image: "images/group_photo_2025_2.jpg"
   }
 ];
+
+// 退役球员暖金色样式覆盖：让退役看起来像荣誉成员，而不是灰色不可用状态。
+(function applyRetiredPlayerWarmStyle() {
+  const style = document.createElement("style");
+  style.textContent = `
+    .player-card-retired {
+      background: linear-gradient(180deg, #fffdf2 0%, #fff8dc 100%) !important;
+      border-color: #f4d35e !important;
+      box-shadow: 0 12px 28px rgba(245, 197, 66, 0.16) !important;
+      opacity: 1 !important;
+    }
+    .player-card-retired:hover {
+      transform: translateY(-3px) !important;
+      box-shadow: 0 14px 34px rgba(245, 197, 66, 0.24) !important;
+      opacity: 1 !important;
+    }
+    .player-card-retired::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, #f59e0b, #f5c542) !important;
+    }
+    .player-card-retired .player-photo {
+      background: linear-gradient(135deg, #fff3bf, #fff8dc) !important;
+      color: #b7791f !important;
+      filter: none !important;
+    }
+    .player-card-retired .number {
+      background: #b7791f !important;
+      color: white !important;
+      box-shadow: 0 8px 18px rgba(183, 121, 31, 0.2) !important;
+    }
+    .player-card-retired .position {
+      background: #fff3bf !important;
+      color: #8a5a00 !important;
+      border: 1px solid rgba(244, 211, 94, 0.6) !important;
+    }
+    .player-card-retired h3 {
+      color: #7a4f00 !important;
+    }
+    .player-card-retired p {
+      color: #8a5a00 !important;
+    }
+    .status-retired {
+      background: #fff3bf !important;
+      color: #8a5a00 !important;
+      border: 1px solid #f4d35e !important;
+      box-shadow: 0 8px 18px rgba(245, 197, 66, 0.2) !important;
+    }
+  `;
+  document.head.appendChild(style);
+})();
