@@ -230,8 +230,8 @@ const players = [
     number: 8,
     position: "右边锋 RW",
     role: "前锋",
-    status: "active",
-    bio: "脚下灵活、进攻欲望强，能够在右路制造连续威胁。",
+    status: "retired",
+    bio: "脚下灵活、进攻欲望强，曾在右路为球队制造连续威胁。",
     photo: ""
   },
   {
