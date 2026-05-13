@@ -14,8 +14,8 @@ const players = [
     number: 1,
     position: "门将 GK",
     role: "门将",
-    status: "active",
-    bio: "反应迅速、扑救果断，是球队门线前最可靠的守护者。",
+    status: "retired",
+    bio: "反应迅速、扑救果断，曾是球队门线前最可靠的守护者。",
     photo: ""
   },
   {
@@ -23,8 +23,8 @@ const players = [
     number: 4,
     position: "后卫 CB",
     role: "后卫",
-    status: "active",
-    bio: "防守稳健、卡位清晰，擅长用冷静判断化解对手进攻。",
+    status: "retired",
+    bio: "防守稳健、卡位清晰，曾用冷静判断为球队化解对手进攻。",
     photo: ""
   },
   {
@@ -50,8 +50,8 @@ const players = [
     number: 11,
     position: "前腰 AMF",
     role: "中场",
-    status: "active",
-    bio: "脚下细腻、视野开阔，负责前场串联和最后一传。",
+    status: "retired",
+    bio: "脚下细腻、视野开阔，曾负责前场串联和最后一传。",
     photo: ""
   },
   {
@@ -59,8 +59,8 @@ const players = [
     number: 21,
     position: "后腰 DMF",
     role: "中场",
-    status: "active",
-    bio: "覆盖面积大、拼抢积极，是中场防守屏障和节奏稳定器。",
+    status: "retired",
+    bio: "覆盖面积大、拼抢积极，曾是球队中场防守屏障和节奏稳定器。",
     photo: ""
   },
   {
@@ -95,8 +95,8 @@ const players = [
     number: 2,
     position: "边后卫 RB",
     role: "后卫",
-    status: "active",
-    bio: "上下往返能力强，既能完成边路防守，也能参与进攻推进。",
+    status: "retired",
+    bio: "上下往返能力强，曾在边路同时承担防守和进攻推进任务。",
     photo: ""
   },
   {
@@ -113,8 +113,8 @@ const players = [
     number: 22,
     position: "中锋 CF",
     role: "前锋",
-    status: "active",
-    bio: "对抗能力强、门前嗅觉敏锐，擅长为球队争取支点和射门空间。",
+    status: "retired",
+    bio: "对抗能力强、门前嗅觉敏锐，曾为球队争取支点和射门空间。",
     photo: ""
   },
   {
@@ -140,8 +140,8 @@ const players = [
     number: 6,
     position: "左后卫 LB",
     role: "后卫",
-    status: "active",
-    bio: "边路爆趟选手，攻防转换速度快，能持续拉开左路空间。",
+    status: "retired",
+    bio: "边路爆趟选手，曾用攻防转换速度持续拉开左路空间。",
     photo: ""
   },
   {
@@ -221,8 +221,8 @@ const players = [
     number: 17,
     position: "左边锋 LW",
     role: "前锋",
-    status: "active",
-    bio: "启动速度快、边路冲击直接，擅长利用空间完成推进。",
+    status: "retired",
+    bio: "启动速度快、边路冲击直接，曾擅长利用空间完成推进。",
     photo: ""
   },
   {
