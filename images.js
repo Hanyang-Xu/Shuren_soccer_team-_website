@@ -6,7 +6,7 @@
 const siteImages = {
   // 首页右侧大图 / 球队大合照
   hero: {
-    image: "images/team.jpg",
+    image: "images/group_photo_2025.jpg",
     caption: "树仁书院足球队合照"
   },
 
