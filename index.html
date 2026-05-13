@@ -652,7 +652,7 @@
         <div class="hero-card">
           <div class="hero-photo">
             <div class="hero-photo-note">
-              这里可以替换成球队大合照：把图片放入 images 文件夹，然后修改 CSS 里的背景图片路径。
+              这里可以替换成球队大合照：把图片放入 images 文件夹，然后修改 index.html 中 .hero-photo 的背景图片路径。
             </div>
           </div>
           <div class="stats">
@@ -661,7 +661,7 @@
               <span>登记球员</span>
             </div>
             <div class="stat">
-              <strong>3</strong>
+              <strong id="newsCount">0</strong>
               <span>球队动态</span>
             </div>
             <div class="stat">
@@ -720,7 +720,7 @@
             <h2 class="section-title">球员阵容</h2>
           </div>
           <p class="section-desc">
-            管理员只需要修改下方 JavaScript 里的 players 数组，就可以更新球员姓名、号码、位置和照片。
+            管理员只需要修改 data.js 文件里的 players 数组，就可以更新球员姓名、号码、位置、简介和照片。
           </p>
         </div>
         <div class="players-grid" id="playersGrid"></div>
@@ -735,7 +735,7 @@
             <h2 class="section-title">球队动态</h2>
           </div>
           <p class="section-desc">
-            这里可以发布训练记录、比赛战报、招新通知和活动回顾。
+            这里可以发布训练记录、比赛战报、招新通知和活动回顾。管理员只需要修改 data.js 文件里的 news 数组。
           </p>
         </div>
         <div class="news-grid" id="newsGrid"></div>
@@ -787,7 +787,7 @@
             <h2 class="section-title">管理员如何更新</h2>
           </div>
           <p class="section-desc">
-            这个网页没有后台数据库。管理员通过 GitHub 修改文件，普通访问者只能通过链接浏览网页。
+            这个网页没有后台数据库。管理员通过 GitHub 修改 data.js 和图片文件，普通访问者只能通过链接浏览网页。
           </p>
         </div>
 
@@ -795,12 +795,12 @@
           <div class="admin-card">
             <strong>1</strong>
             <h3>更新球员</h3>
-            <p>在 index.html 底部找到 players 数组，修改姓名、号码、位置、简介和照片地址。</p>
+            <p>在 data.js 文件中找到 players 数组，修改姓名、号码、位置、简介和照片地址。</p>
           </div>
           <div class="admin-card">
             <strong>2</strong>
             <h3>更新动态</h3>
-            <p>在 news 数组里添加新的球队动态，包括日期、标题、内容和图片。</p>
+            <p>在 data.js 文件中找到 news 数组，添加新的球队动态，包括日期、标题、内容和图片。</p>
           </div>
           <div class="admin-card">
             <strong>3</strong>
@@ -824,6 +824,7 @@
     function renderPlayers() {
       const grid = document.getElementById("playersGrid");
       const count = document.getElementById("playerCount");
+
       count.textContent = players.length;
 
       grid.innerHTML = players.map(player => {
@@ -849,6 +850,10 @@
 
     function renderNews() {
       const grid = document.getElementById("newsGrid");
+      const count = document.getElementById("newsCount");
+
+      count.textContent = news.length;
+
       grid.innerHTML = news.map(item => `
         <article class="news-card">
           <div class="news-image">
