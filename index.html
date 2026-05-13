@@ -113,10 +113,7 @@
       border-radius: 18px; padding: 14px 16px; font-size: 14px;
       color: rgba(255,255,255,0.92);
     }
-    .stats {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 14px; margin-top: 14px;
-    }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
     .stat {
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.2);
@@ -127,18 +124,12 @@
     .honor-trophies { font-size: 25px; letter-spacing: 1px; white-space: nowrap; }
 
     section { padding: 78px 0; }
-    .section-head {
-      display: flex; align-items: end; justify-content: space-between;
-      gap: 24px; margin-bottom: 32px;
-    }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
     .section-kicker {
       color: var(--primary); font-weight: 900; letter-spacing: 1.5px;
       font-size: 13px; text-transform: uppercase; margin-bottom: 8px;
     }
-    .section-title {
-      font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.15; letter-spacing: -0.8px;
-    }
+    .section-title { font-size: clamp(28px, 4vw, 44px); line-height: 1.15; letter-spacing: -0.8px; }
     .section-desc { max-width: 560px; color: var(--muted); }
 
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -172,8 +163,50 @@
       border-radius: var(--radius); overflow: hidden;
       box-shadow: 0 10px 30px rgba(17, 24, 39, 0.07);
       transition: 0.2s ease;
+      position: relative;
     }
     .player-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .player-card-active {
+      border-color: rgba(15, 81, 50, 0.32);
+      box-shadow: 0 12px 34px rgba(15, 81, 50, 0.12);
+    }
+    .player-card-active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, var(--primary), #22c55e);
+    }
+    .player-card-retired {
+      background: #f8fafc;
+      border-color: #d0d5dd;
+      box-shadow: 0 8px 22px rgba(17, 24, 39, 0.04);
+      opacity: 0.82;
+    }
+    .player-card-retired:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
+      opacity: 0.94;
+    }
+    .player-card-retired .player-photo {
+      background: linear-gradient(135deg, #e5e7eb, #f3f4f6);
+      color: #667085;
+      filter: grayscale(1);
+    }
+    .player-card-retired .number {
+      background: #667085;
+      box-shadow: none;
+    }
+    .player-card-retired .position {
+      background: #eef2f6;
+      color: #475467;
+    }
+    .player-card-retired h3,
+    .player-card-retired p {
+      color: #667085;
+    }
     .player-photo {
       aspect-ratio: 4 / 3; background: linear-gradient(135deg, #d1fae5, #fef3c7);
       display: grid; place-items: center; font-size: 48px;
@@ -189,11 +222,22 @@
     }
     .status-badge {
       position: absolute; left: 12px; top: 12px;
-      padding: 5px 10px; border-radius: 999px;
-      background: rgba(255,255,255,0.9);
-      color: var(--primary); font-size: 12px; font-weight: 900;
+      padding: 6px 11px; border-radius: 999px;
+      font-size: 12px; font-weight: 900;
+      letter-spacing: 0.5px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
     }
-    .status-retired { color: #475467; }
+    .status-active {
+      background: var(--primary);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.28);
+    }
+    .status-retired {
+      background: rgba(255,255,255,0.92);
+      color: #475467;
+      border: 1px solid #d0d5dd;
+      box-shadow: none;
+    }
     .player-body { padding: 18px; }
     .player-body h3 { font-size: 20px; margin-bottom: 6px; }
     .position {
@@ -204,15 +248,9 @@
     .player-body p { color: var(--muted); font-size: 14px; }
     .expand-wrap { display: flex; justify-content: center; margin-top: 26px; }
     .expand-btn {
-      border: 1px solid var(--primary);
-      background: var(--primary);
-      color: white;
-      padding: 11px 18px;
-      border-radius: 999px;
-      font-weight: 900;
-      cursor: pointer;
-      box-shadow: 0 10px 24px rgba(15, 81, 50, 0.16);
-      transition: 0.18s ease;
+      border: 1px solid var(--primary); background: var(--primary); color: white;
+      padding: 11px 18px; border-radius: 999px; font-weight: 900; cursor: pointer;
+      box-shadow: 0 10px 24px rgba(15, 81, 50, 0.16); transition: 0.18s ease;
     }
     .expand-btn:hover { transform: translateY(-2px); background: var(--primary-dark); }
 
@@ -230,10 +268,7 @@
     .news-body h3 { font-size: 20px; margin-bottom: 8px; }
     .news-body p { color: var(--muted); font-size: 15px; }
 
-    .gallery-grid {
-      display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr;
-      grid-auto-rows: 230px; gap: 16px;
-    }
+    .gallery-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr; grid-auto-rows: 230px; gap: 16px; }
     .gallery-item {
       border-radius: var(--radius); overflow: hidden;
       box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
@@ -338,8 +373,8 @@
 
   <footer class="footer"><div class="container footer-inner"><p><strong>树仁书院足球队</strong> · Shuren College Soccer Team</p><p>南方科技大学 · Since 2016</p></div></footer>
 
-  <script src="images.js"></script>
-  <script src="data.js"></script>
+  <script src="images.js?v=20260513"></script>
+  <script src="data.js?v=20260513"></script>
   <script>
     let currentStatus = "all";
     let currentRole = "all";
@@ -402,8 +437,10 @@
       grid.innerHTML = visiblePlayers.map(player => {
         const status = player.status || "active";
         const statusText = status === "retired" ? "退役" : "现役";
+        const cardClass = status === "retired" ? "player-card-retired" : "player-card-active";
+        const badgeClass = status === "retired" ? "status-retired" : "status-active";
         const photoHtml = player.photo ? `<img src="${player.photo}" alt="${player.name}" />` : `<span>${player.name.slice(0, 1)}</span>`;
-        return `<article class="player-card"><div class="player-photo">${photoHtml}<div class="status-badge ${status === 'retired' ? 'status-retired' : ''}">${statusText}</div><div class="number">${player.number}</div></div><div class="player-body"><h3>${player.name}</h3><div class="position">${player.position}</div><p>${player.bio}</p></div></article>`;
+        return `<article class="player-card ${cardClass}"><div class="player-photo">${photoHtml}<div class="status-badge ${badgeClass}">${statusText}</div><div class="number">${player.number}</div></div><div class="player-body"><h3>${player.name}</h3><div class="position">${player.position}</div><p>${player.bio}</p></div></article>`;
       }).join("");
 
       if (allShownPlayers.length > PLAYER_PREVIEW_LIMIT) {
