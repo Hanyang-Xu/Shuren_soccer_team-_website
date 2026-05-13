@@ -124,6 +124,7 @@
     }
     .stat strong { display: block; font-size: 28px; color: var(--accent); }
     .stat span { font-size: 13px; color: rgba(255,255,255,0.78); }
+    .honor-trophies { font-size: 25px; letter-spacing: 1px; white-space: nowrap; }
 
     section { padding: 78px 0; }
     .section-head {
@@ -201,6 +202,19 @@
       font-size: 13px; font-weight: 900; margin-bottom: 10px;
     }
     .player-body p { color: var(--muted); font-size: 14px; }
+    .expand-wrap { display: flex; justify-content: center; margin-top: 26px; }
+    .expand-btn {
+      border: 1px solid var(--primary);
+      background: var(--primary);
+      color: white;
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(15, 81, 50, 0.16);
+      transition: 0.18s ease;
+    }
+    .expand-btn:hover { transform: translateY(-2px); background: var(--primary-dark); }
 
     .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
     .news-card {
@@ -292,7 +306,7 @@
         </div>
         <div class="hero-card">
           <div class="hero-photo"><div class="hero-photo-note" id="heroPhotoNote">树仁书院足球队合照</div></div>
-          <div class="stats"><div class="stat"><strong id="activeCount">0</strong><span>现役球员</span></div><div class="stat"><strong>2016</strong><span>成立年份</span></div><div class="stat"><strong>2冠 1亚 2季</strong><span>球队荣誉</span></div></div>
+          <div class="stats"><div class="stat"><strong id="activeCount">0</strong><span>现役球员</span></div><div class="stat"><strong>2016</strong><span>成立年份</span></div><div class="stat"><strong class="honor-trophies">🏆🏆 🥈 🥉🥉</strong><span>球队荣誉</span></div></div>
         </div>
       </div>
     </section>
@@ -300,7 +314,7 @@
     <section id="about"><div class="container">
       <div class="section-head"><div><div class="section-kicker">About Us</div><h2 class="section-title">球队介绍</h2></div><p class="section-desc">我们来自南方科技大学树仁书院，因为足球聚在一起，也因为共同训练、共同比赛、共同承担而成为真正的团队。</p></div>
       <div class="about-grid">
-        <article class="about-card"><h3>我们的球队</h3><p>树仁书院足球队成立于 2016 年，是一支以兄弟情、凝聚力和持续进步为核心的书院球队。我们重视场上的执行力，也珍惜场下的队友情。无论训练还是比赛，球队始终相信：团队的力量，是走向胜利最重要的基础。</p><div class="pill-row"><span class="pill">兄弟情球队</span><span class="pill">团结拼搏</span><span class="pill">每年进步</span><span class="pill">2冠 1亚 2季</span></div></article>
+        <article class="about-card"><h3>我们的球队</h3><p>树仁书院足球队成立于 2016 年，是一支以兄弟情、凝聚力和持续进步为核心的书院球队。我们重视场上的执行力，也珍惜场下的队友情。无论训练还是比赛，球队始终相信：团队的力量，是走向胜利最重要的基础。</p><div class="pill-row"><span class="pill">兄弟情球队</span><span class="pill">团结拼搏</span><span class="pill">每年进步</span><span class="pill">🏆🏆 🥈 🥉🥉</span></div></article>
         <article class="info-card"><h3>训练与活动</h3><p>球队每周三、周六在南方科技大学松禾足球场进行常规训练。训练内容包括基础传接球、分组对抗、体能恢复、战术磨合和比赛备战。我们欢迎热爱足球、愿意融入团队、愿意持续进步的同学加入。</p><div class="pill-row"><span class="pill">每周三训练</span><span class="pill">每周六训练</span><span class="pill">松禾足球场</span></div></article>
       </div>
     </div></section>
@@ -309,6 +323,7 @@
       <div class="section-head"><div><div class="section-kicker">Squad</div><h2 class="section-title">球员阵容</h2></div><p class="section-desc">这里记录着并肩训练、共同比赛的队员们。你可以按现役、退役和位置查看不同球员。</p></div>
       <div class="filters" id="playerFilters"><button class="filter-btn active" data-status="all" data-role="all">全部</button><button class="filter-btn" data-status="active" data-role="all">现役</button><button class="filter-btn" data-status="retired" data-role="all">退役</button><button class="filter-btn" data-status="all" data-role="门将">门将</button><button class="filter-btn" data-status="all" data-role="后卫">后卫</button><button class="filter-btn" data-status="all" data-role="中场">中场</button><button class="filter-btn" data-status="all" data-role="前锋">前锋</button></div>
       <div class="players-grid" id="playersGrid"></div>
+      <div class="expand-wrap" id="playersExpandWrap" style="display: none;"><button class="expand-btn" id="playersExpandBtn" type="button">展开全部</button></div>
     </div></section>
 
     <section id="news"><div class="container"><div class="section-head"><div><div class="section-kicker">News</div><h2 class="section-title">球队动态</h2></div><p class="section-desc">记录球队训练、比赛、合照、招新和每一次共同成长的瞬间。</p></div><div class="news-grid" id="newsGrid"></div></div></section>
@@ -328,6 +343,8 @@
   <script>
     let currentStatus = "all";
     let currentRole = "all";
+    let playersExpanded = false;
+    const PLAYER_PREVIEW_LIMIT = 12;
 
     function applySiteImages() {
       if (typeof siteImages === "undefined") return;
@@ -369,15 +386,32 @@
     function renderPlayers() {
       const grid = document.getElementById("playersGrid");
       const activeCount = document.getElementById("activeCount");
-      const shownPlayers = filteredPlayers();
+      const expandWrap = document.getElementById("playersExpandWrap");
+      const expandBtn = document.getElementById("playersExpandBtn");
+      const allShownPlayers = filteredPlayers();
+      const visiblePlayers = playersExpanded ? allShownPlayers : allShownPlayers.slice(0, PLAYER_PREVIEW_LIMIT);
+
       activeCount.textContent = players.filter(player => (player.status || "active") === "active").length;
-      if (!shownPlayers.length) { grid.innerHTML = `<p class="section-desc">当前分类下暂无球员。</p>`; return; }
-      grid.innerHTML = shownPlayers.map(player => {
+
+      if (!allShownPlayers.length) {
+        grid.innerHTML = `<p class="section-desc">当前分类下暂无球员。</p>`;
+        expandWrap.style.display = "none";
+        return;
+      }
+
+      grid.innerHTML = visiblePlayers.map(player => {
         const status = player.status || "active";
         const statusText = status === "retired" ? "退役" : "现役";
         const photoHtml = player.photo ? `<img src="${player.photo}" alt="${player.name}" />` : `<span>${player.name.slice(0, 1)}</span>`;
         return `<article class="player-card"><div class="player-photo">${photoHtml}<div class="status-badge ${status === 'retired' ? 'status-retired' : ''}">${statusText}</div><div class="number">${player.number}</div></div><div class="player-body"><h3>${player.name}</h3><div class="position">${player.position}</div><p>${player.bio}</p></div></article>`;
       }).join("");
+
+      if (allShownPlayers.length > PLAYER_PREVIEW_LIMIT) {
+        expandWrap.style.display = "flex";
+        expandBtn.textContent = playersExpanded ? "收起阵容" : `展开全部（共 ${allShownPlayers.length} 人）`;
+      } else {
+        expandWrap.style.display = "none";
+      }
     }
 
     function setupFilters() {
@@ -388,8 +422,15 @@
           button.classList.add("active");
           currentStatus = button.dataset.status;
           currentRole = button.dataset.role;
+          playersExpanded = false;
           renderPlayers();
         });
+      });
+
+      document.getElementById("playersExpandBtn").addEventListener("click", () => {
+        playersExpanded = !playersExpanded;
+        renderPlayers();
+        if (!playersExpanded) document.getElementById("players").scrollIntoView({ behavior: "smooth", block: "start" });
       });
     }
 
