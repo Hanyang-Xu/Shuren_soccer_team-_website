@@ -20,7 +20,7 @@ const siteImages = {
 };
 
 (function loadExtraScripts() {
-  ["season.js?v=20260602", "contact.js?v=20260602"].forEach(src => {
+  ["season.js?v=20260602", "contact.js?v=20260603"].forEach(src => {
     const script = document.createElement("script");
     script.src = src;
     document.body.appendChild(script);
