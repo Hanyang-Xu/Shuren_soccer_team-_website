@@ -6,7 +6,7 @@
 const siteImages = {
   hero: {
     image: "images/group_photo_2026.jpg",
-    caption: "2026 年南方科技大学第十届“树说杯”足球赛合照"
+    caption: "2026 年南方科技大学第十届“书院杯”足球赛合照"
   },
   gallery: [
     { image: "images/group_photo_2026.jpg", caption: "2026 年书院杯球队合照", alt: "2026 年树仁书院足球队书院杯合照" },
