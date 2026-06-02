@@ -19,8 +19,10 @@ const siteImages = {
   ]
 };
 
-(function loadSeasonStats() {
-  const script = document.createElement("script");
-  script.src = "season.js?v=20260602";
-  document.body.appendChild(script);
+(function loadExtraScripts() {
+  ["season.js?v=20260602", "contact.js?v=20260602"].forEach(src => {
+    const script = document.createElement("script");
+    script.src = src;
+    document.body.appendChild(script);
+  });
 })();
